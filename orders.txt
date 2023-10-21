@@ -1,0 +1,30 @@
+CREATE DATABASE orders;
+
+USE orders;
+
+CREATE TABLE persons (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    birthplace VARCHAR(255) NOT NULL,
+    birthdate DATE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE order_records (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    store VARCHAR(255) NOT NULL,
+    item VARCHAR(255) NOT NULL,
+    price INT NOT NULL,
+    person_id BIGINT,
+    FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+);
+
+INSERT INTO persons (name, birthplace, birthdate, email) VALUES
+('Gáll Mátyás', 'Nyíregyháza', '2000-09-12', 'gallmatyas@email.com'),
+('Máll Gátyás', 'Debrecen', '2000-12-09', 'mallgatyas@email.com');
+
+INSERT INTO order_records (store, item, price, person_id) VALUES
+('Ebay', 'fejhallgató', 12000, 1),
+('Emag', 'egér', 8000, 1),
+('Asos', 'kabát', 30000, 2),
+('Burger King', 'étel', 3000, 2);
