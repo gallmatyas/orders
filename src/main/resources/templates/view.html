@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Person</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<h1 th:text="${person.name}"></h1>
+<p>Email: <span th:text="${person.email}"></span></p>
+<p>Birthplace: <span th:text="${person.birthplace}"></span></p>
+<p>Birthdate: <span th:text="${person.birthdate}"></span></p>
+
+<h2>Orders:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Store</th>
+        <th>Item</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${person.orders}">
+        <td th:text="${order.store}"></td>
+        <td th:text="${order.item}"></td>
+        <td th:text="${order.price}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
